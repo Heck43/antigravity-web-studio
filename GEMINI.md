@@ -45,8 +45,9 @@ Whenever the user asks to build or create a web application:
 
 ### Phase 1: THINK & ISOLATE
 - Determine or create the project directory (e.g. `apps/<slug>/`).
-- Create `apps/<slug>/docs/` by copying clean templates from root `docs/`.
+- Create `apps/<slug>/docs/` by copying clean templates from root `docs/` (including `DEVLOG.md`).
 - Analyze user goals, user journeys, edge cases, and write the plan into `apps/<slug>/docs/PLAN.md` and `apps/<slug>/docs/BRIEF.md`.
+- **Keep a journal:** Record ongoing milestones, rationale, and bug fixes in `apps/<slug>/docs/DEVLOG.md`.
 
 ### Phase 1.5: CLARIFY LAYOUT & PREFERENCES (`ask_question`)
 - **Consult the user on layout and aesthetic choices:** Before locking down the implementation, if the user's prompt leaves UI structure or visual decisions open, call `ask_question` to let the user choose:
@@ -56,7 +57,8 @@ Whenever the user asks to build or create a web application:
 - Always provide 2–4 concise options, marking the recommended choice with `(Recommended)`.
 - Respect and incorporate the user's selections into the design tokens and layout plan.
 
-### Phase 2: MANDATORY INTERNET RESEARCH & DESIGN
+### Phase 2: KNOWLEDGE BASE & MANDATORY WEB RESEARCH
+- **Check local recipes first:** Inspect `knowledge/recipes/` (e.g. for localStorage state, modal accessibility, responsive tokens) to leverage proven code patterns.
 - **Active web search is mandatory:** Execute at least 2–3 live web searches via `search_web` for modern UI/UX design patterns, color palettes, and component layouts specifically for this project.
 - Save design tokens and styles in `apps/<slug>/docs/DESIGN.md`.
 - Save all research URLs and citations in `apps/<slug>/docs/SOURCES.md`.
@@ -66,10 +68,10 @@ Whenever the user asks to build or create a web application:
 - Write code directly into `apps/<slug>/index.html`, `apps/<slug>/style.css`, `apps/<slug>/script.js` using `write_to_file`.
 - Use semantic HTML5, modern CSS3 (custom properties, flex/grid, micro-interactions, responsive mobile/desktop), and clean modular vanilla JavaScript.
 
-### Phase 4: VERIFICATION & TESTING
+### Phase 4: VERIFICATION & PRE-RELEASE LINT
 - Never claim a project works without verifying.
-- Execute checks via `run_command` (e.g. syntax checks on JavaScript files via `node -c`, HTML structure validation).
-- Record QA evidence in `apps/<slug>/docs/QA.md`. Fix any defects immediately.
+- **Run the Pre-Release Linter:** Execute `node scripts/web-lint.js apps/<slug>` to ensure HTML/CSS/JS syntax is valid and hygiene checks pass.
+- Record QA evidence in `apps/<slug>/docs/QA.md` and log fixed issues in `apps/<slug>/docs/DEVLOG.md`. Fix any defects immediately.
 
 ### Phase 5: SHIP & REPORT
 - Complete `apps/<slug>/docs/RESULT.md`.
