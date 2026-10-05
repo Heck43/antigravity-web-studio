@@ -3,10 +3,10 @@
 Record useful external sources and design references for this project here.
 
 ## 🎨 Recommended Design & CSS Inspiration Hubs:
-- **UI/UX Patterns:** [Mobbin](https://mobbin.com) • [Refero](https://refero.design) • [Godly](https://godly.website) • [Dribbble](https://dribbble.com)
-- **Ready CSS & Components:** [Uiverse.io](https://uiverse.io) • [HyperUI](https://www.hyperui.dev) • [Shadcn UI](https://ui.shadcn.com) • [Modern CSS](https://moderncss.dev)
-- **Colors & Tokens:** [Realtime Colors](https://realtimecolors.com) • [Coolors](https://coolors.co) • [Tailwind Colors](https://tailwindcss.com/docs/customizing-colors)
-- **Icons & Fonts:** [Lucide Icons](https://lucide.dev) • [Tabler Icons](https://tabler.io/icons) • [Google Fonts](https://fonts.google.com)
+- **Direct AI Extractable Components:** [HyperUI](https://www.hyperui.dev/components/application) • [Flowbite](https://flowbite.com/docs/components/buttons/) • [DaisyUI](https://daisyui.com/components/) • [Modern CSS](https://moderncss.dev)
+- **Direct Raw SVG Icons:** [Lucide Icons Raw](https://raw.githubusercontent.com/lucide-icons/lucide/main/icons/) (e.g. `/icons/search.svg`) • [Tabler Icons Raw](https://raw.githubusercontent.com/tabler/tabler-icons/main/icons/outline/)
+- **UI/UX Inspiration & Layouts:** [Mobbin](https://mobbin.com) • [Refero](https://refero.design) • [Godly](https://godly.website)
+- *Full AI-tested guide with offline color palettes and CSS snippets:* See `knowledge/design-sources.md`.
 
 ---
 
