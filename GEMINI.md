@@ -69,5 +69,18 @@ Whenever the user asks to build or create a web application:
 
 ---
 
-## Default Stack
-Prefer HTML5 + CSS3 + vanilla JavaScript unless the user explicitly requests another stack. Keep dependencies minimal, performant, and self-contained.
+---
+
+## Stack Guidelines & Modern Framework Support
+
+### 1. Default Lightweight Stack:
+- Default: **HTML5 + modern CSS3 + vanilla JavaScript (ES6+)** for fast, dependency-free, zero-build SPAs and widgets.
+
+### 2. Full Framework Support (React, Vue, Svelte, Next, Tailwind, etc.):
+- When the user requests a framework (e.g. React, Vue, Svelte, Tailwind CSS, TypeScript, Express, FastAPI):
+  1. **Scaffold locally:** Run scaffolding tools inside `apps/<app-slug>/` (for example: `npm create vite@latest . -- --template react` or `react-ts`, `vue`, `svelte`).
+  2. **Install dependencies:** Run `npm install` directly within `apps/<app-slug>/` to install all requested and required dependencies (e.g. icons, router, UI libraries).
+  3. **Framework Structure:** Organize the project according to industry conventions for that framework (`src/components/`, `src/hooks/`, `src/assets/`, `vite.config.js`, etc.).
+  4. **Verification:** Validate the setup by running the build command (e.g. `npm run build` or type checks `npx tsc --noEmit`) to verify that the project builds with zero compile errors.
+  5. **Launch Instructions:** In the final report, give the exact command to run the local dev server (e.g. `cd apps/<app-slug>; npm run dev`).
+
