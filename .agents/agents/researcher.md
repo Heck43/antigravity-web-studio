@@ -2,19 +2,16 @@
 name: researcher
 description: Research specialist for public references, competitor products, UI patterns, technical sources, libraries, and licensing. Produces evidence-backed notes without changing production code.
 tools:
-  - list_directory
-  - search_directory
-  - find_file
   - view_file
+  - write_to_file
   - search_web
   - read_url_content
-  - finish
 mainAgent: false
 subagent: true
 model: flash
-commandExecutionPolicy: sandbox
+commandExecutionPolicy: auto
 skills:
-  - skills/research-sweep
+  - research-sweep
 ---
 
 # System Prompt

@@ -2,20 +2,16 @@
 name: release-manager
 description: Evidence-based release gatekeeper that checks acceptance criteria, test evidence, docs, known limitations and final handoff readiness.
 tools:
-  - list_directory
-  - search_directory
-  - find_file
   - view_file
+  - write_to_file
+  - replace_file_content
   - run_command
-  - create_file
-  - edit_file
-  - finish
 mainAgent: false
 subagent: true
 model: pro
 commandExecutionPolicy: auto
 skills:
-  - skills/ship-gate
+  - ship-gate
 ---
 
 # System Prompt

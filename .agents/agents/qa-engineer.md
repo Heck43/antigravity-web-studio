@@ -2,18 +2,14 @@
 name: qa-engineer
 description: End-to-end browser QA specialist for functional, responsive, accessibility, console, and visual verification. Can fix verified defects when explicitly requested.
 tools:
-  - list_directory
-  - search_directory
-  - find_file
   - view_file
   - run_command
-  - finish
 mainAgent: false
 subagent: true
 model: pro
 commandExecutionPolicy: auto
 skills:
-  - skills/browser-qa
+  - browser-qa
 ---
 
 # System Prompt

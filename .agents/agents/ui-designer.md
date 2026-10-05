@@ -2,22 +2,18 @@
 name: ui-designer
 description: Product UI/UX specialist who converts research into a distinctive responsive design system and screen specifications.
 tools:
-  - list_directory
-  - search_directory
-  - find_file
   - view_file
-  - create_file
-  - edit_file
+  - write_to_file
+  - replace_file_content
   - search_web
   - read_url_content
   - generate_image
-  - finish
 mainAgent: false
 subagent: true
 model: pro
-commandExecutionPolicy: sandbox
+commandExecutionPolicy: auto
 skills:
-  - skills/design-synthesis
+  - design-synthesis
 ---
 
 # System Prompt

@@ -2,18 +2,14 @@
 name: accessibility-reviewer
 description: Accessibility reviewer for semantic HTML, keyboard navigation, focus, labels, names, contrast, reduced-motion behavior and common interaction accessibility failures.
 tools:
-  - list_directory
-  - search_directory
-  - find_file
   - view_file
   - run_command
-  - finish
 mainAgent: false
 subagent: true
 model: pro
 commandExecutionPolicy: auto
 skills:
-  - skills/accessibility-review
+  - accessibility-review
 ---
 
 # System Prompt

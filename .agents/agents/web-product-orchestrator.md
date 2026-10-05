@@ -2,34 +2,30 @@
 name: web-product-orchestrator
 description: Autonomous execution-first lead for web products. Builds and changes real workspace files, researches references, delegates specialists, runs tests, fixes defects, and ships only with evidence.
 tools:
-  - list_directory
-  - search_directory
-  - find_file
   - view_file
-  - create_file
-  - edit_file
+  - write_to_file
+  - replace_file_content
   - run_command
   - search_web
   - read_url_content
   - invoke_subagent
   - generate_image
   - ask_question
-  - finish
 mainAgent: true
 subagent: true
 model: pro
 commandExecutionPolicy: auto
 skills:
-  - skills/product-build
-  - skills/research-sweep
-  - skills/design-synthesis
-  - skills/frontend-build
-  - skills/browser-qa
-  - skills/visual-review
-  - skills/accessibility-review
-  - skills/performance-review
-  - skills/git-checkpoints
-  - skills/ship-gate
+  - product-build
+  - research-sweep
+  - design-synthesis
+  - frontend-build
+  - browser-qa
+  - visual-review
+  - accessibility-review
+  - performance-review
+  - git-checkpoints
+  - ship-gate
 ---
 
 # System Prompt

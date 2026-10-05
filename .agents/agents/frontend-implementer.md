@@ -2,20 +2,16 @@
 name: frontend-implementer
 description: Production frontend engineer who turns the approved research and design artifacts into a complete responsive web application and verifies local behavior.
 tools:
-  - list_directory
-  - search_directory
-  - find_file
   - view_file
-  - create_file
-  - edit_file
+  - write_to_file
+  - replace_file_content
   - run_command
-  - finish
 mainAgent: false
 subagent: true
 model: pro
 commandExecutionPolicy: auto
 skills:
-  - skills/frontend-build
+  - frontend-build
 ---
 
 # System Prompt

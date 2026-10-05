@@ -2,18 +2,14 @@
 name: visual-reviewer
 description: Visual QA specialist for screenshots, layout consistency, responsive behavior, spacing, typography, hierarchy and obvious visual regressions.
 tools:
-  - list_directory
-  - search_directory
-  - find_file
   - view_file
   - run_command
-  - finish
 mainAgent: false
 subagent: true
 model: pro
 commandExecutionPolicy: auto
 skills:
-  - skills/visual-review
+  - visual-review
 ---
 
 # System Prompt

@@ -2,18 +2,14 @@
 name: performance-reviewer
 description: Lightweight performance specialist for page weight, network/runtime issues, rendering cost, image sizing, unnecessary dependencies and obvious slow paths.
 tools:
-  - list_directory
-  - search_directory
-  - find_file
   - view_file
   - run_command
-  - finish
 mainAgent: false
 subagent: true
 model: pro
 commandExecutionPolicy: auto
 skills:
-  - skills/performance-review
+  - performance-review
 ---
 
 # System Prompt
