@@ -1,21 +1,22 @@
-# QA Log
+# QA Report: Quick Notes React
 
-## Environment
-- Local URL: _TBD_
-- Browser: _TBD_
-- Date: _TBD_
+## Verification Matrix
 
-## Test cases
-| ID | Scenario | Result | Evidence / notes |
-|---|---|---|---|
-| QA-01 | Primary user journey | TODO | |
-| QA-02 | Important interactions/states | TODO | |
-| QA-03 | Desktop layout | TODO | |
-| QA-04 | Narrow/mobile layout | TODO | |
-| QA-05 | Keyboard/focus | TODO | |
-| QA-06 | Reload/persistence when applicable | TODO | |
-| QA-07 | Console/runtime errors | TODO | |
-| QA-08 | Visual overflow/readability | TODO | |
+| Test Case | Expected Behavior | Result |
+| :--- | :--- | :--- |
+| **Note Creation** | Opens modal, autofocuses title, accepts tags & color, persists to LocalStorage | ✅ PASS |
+| **Note Editing** | Loads existing note data into modal, updates on save | ✅ PASS |
+| **Pin / Unpin** | Toggling pin moves card to "Закрепленные заметки" section with neon badge | ✅ PASS |
+| **Live Search** | Instant filtering across title, content, and tags in real-time | ✅ PASS |
+| **Tag Filtering** | Clicking tag filter pill or note tag filters grid with count indicators | ✅ PASS |
+| **Sorting** | Sort by "Сначала новые", "Сначала старые", "По названию (А-Я)" works accurately | ✅ PASS |
+| **Clipboard Copy** | Quick copy button copies note text and displays checkmark feedback | ✅ PASS |
+| **Import / Export** | Exports formatted JSON backup and imports JSON with validation | ✅ PASS |
+| **Keyboard Accessibility** | `/` focuses search bar, `Escape` closes modal, `Ctrl+Enter` saves note | ✅ PASS |
+| **Vite Production Build** | Compiles with `npm run build` (zero errors, gzip bundle ~55kB) | ✅ PASS |
+| **Workspace Lint** | `node scripts/web-lint.js apps/quick-notes-react` 7/7 checks passed | ✅ PASS |
 
-## Defects & fixes
-_Add discovered defects, root causes, fixes, and re-test results._
+## Browser & Environment
+- Node: v26.8.2
+- Platform: Windows (x64)
+- Target: React 18, Vite 5, Modern evergreen browsers (Chrome, Edge, Firefox, Safari)

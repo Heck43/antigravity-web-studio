@@ -1,5 +1,9 @@
 # 🚀 Antigravity Web Product AI Studio
 
+<p align="center">
+  <b>English</b> &bull; <a href="README.ru.md">Русская версия</a>
+</p>
+
 > **An autonomous, execution-first multi-app web development environment for AI coding agents (Antigravity 2.0, Claude Code, Cursor, Codex, Gemini CLI).**
 
 Build original, production-ready, verified web applications from scratch without copy-pasting code snippets or context collisions.
