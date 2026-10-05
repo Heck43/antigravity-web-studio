@@ -59,7 +59,8 @@ Whenever the user asks to build or create a web application:
 
 ### Phase 2: KNOWLEDGE BASE & MANDATORY WEB RESEARCH
 - **Check local recipes first:** Inspect `knowledge/recipes/` (e.g. for localStorage state, modal accessibility, responsive tokens) to leverage proven code patterns.
-- **Active web search is mandatory:** Execute at least 2–3 live web searches via `search_web` for modern UI/UX design patterns, color palettes, and component layouts specifically for this project.
+- **Consult design catalog:** Use `knowledge/design-sources.md` as primary reference points for UI patterns (Mobbin, Refero, Godly), ready CSS components (Uiverse.io, HyperUI, Modern CSS), color tokens (Realtime Colors, Tailwind Colors), and icons (Lucide, Tabler).
+- **Active web search is mandatory:** Execute at least 2–3 live web searches via `search_web` for modern UI/UX design patterns, color palettes, and component layouts specifically for this project (e.g. targeted searches like `site:uiverse.io`, `site:hyperui.dev`, or design blogs).
 - Save design tokens and styles in `apps/<slug>/docs/DESIGN.md`.
 - Save all research URLs and citations in `apps/<slug>/docs/SOURCES.md`.
 

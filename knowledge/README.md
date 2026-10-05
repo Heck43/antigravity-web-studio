@@ -7,7 +7,8 @@ A curated library of battle-tested, production-ready web development patterns an
 2. **Quality Guarantee:** Recipes here follow accessibility (WCAG), performance, and clean code standards.
 3. **Contribute New Recipes:** When a complex problem is solved effectively in an app, the agent can summarize the solution into a new recipe in `knowledge/recipes/<topic>.md`.
 
-## Available Recipes:
+## Available Guides & Recipes:
+- [`design-sources.md`](design-sources.md) — 🎨 Curated sources for UI/UX inspiration, component systems, CSS libraries, and color palettes.
 - [`localstorage-state.md`](recipes/localstorage-state.md) — Robust state manager with localStorage, serialization, quota protection, and initial seed.
 - [`modal-dialog-aria.md`](recipes/modal-dialog-aria.md) — Accessible modal dialog with focus trapping, `Escape` key handling, and backdrop dismissal.
 - [`responsive-design-tokens.md`](recipes/responsive-design-tokens.md) — Modern CSS Custom Properties design system with fluid typography and dark mode support.
