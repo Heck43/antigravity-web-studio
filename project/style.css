@@ -1,0 +1,1212 @@
+/* ==========================================================================
+   МЕНЕДЖЕР УЧЕБНЫХ ЗАДАЧ — ОСНОВНАЯ ТАБЛИЦА СТИЛЕЙ (style.css)
+   Стек: Modern CSS3, Flexbox, CSS Grid, Custom Properties
+   ========================================================================== */
+
+/* --------------------------------------------------------------------------
+   1. CSS Custom Properties / Переменные темы
+   -------------------------------------------------------------------------- */
+:root {
+  /* Цветовая палитра */
+  --primary: #4f46e5;
+  --primary-hover: #4338ca;
+  --primary-active: #3730a3;
+  --primary-light: #eef2ff;
+  --primary-ring: rgba(79, 70, 229, 0.25);
+
+  --bg-page: #f8fafc;
+  --bg-surface: #ffffff;
+  --bg-subtle: #f1f5f9;
+  --bg-input: #ffffff;
+
+  --border-color: #e2e8f0;
+  --border-hover: #cbd5e1;
+  --border-focus: #6366f1;
+
+  --text-primary: #0f172a;
+  --text-secondary: #475569;
+  --text-muted: #64748b;
+  --text-light: #94a3b8;
+
+  /* Приоритеты */
+  --priority-high-bg: #fef2f2;
+  --priority-high-text: #b91c1c;
+  --priority-high-border: #fecaca;
+  --priority-high-pill: #ef4444;
+
+  --priority-medium-bg: #fffbeb;
+  --priority-medium-text: #b45309;
+  --priority-medium-border: #fde68a;
+  --priority-medium-pill: #f59e0b;
+
+  --priority-low-bg: #eff6ff;
+  --priority-low-text: #1d4ed8;
+  --priority-low-border: #bfdbfe;
+  --priority-low-pill: #3b82f6;
+
+  /* Статусы дедлайнов */
+  --status-overdue-bg: #fee2e2;
+  --status-overdue-text: #b91c1c;
+  --status-overdue-border: #fca5a5;
+
+  --status-today-bg: #fef3c7;
+  --status-today-text: #92400e;
+  --status-today-border: #fcd34d;
+
+  --status-done-bg: #ecfdf5;
+  --status-done-text: #059669;
+  --status-done-border: #a7f3d0;
+
+  /* Тени */
+  --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+  --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.07), 0 2px 4px -2px rgba(0, 0, 0, 0.04);
+  --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.08), 0 4px 6px -4px rgba(0, 0, 0, 0.04);
+  --shadow-modal: 0 20px 25px -5px rgba(0, 0, 0, 0.12), 0 8px 10px -6px rgba(0, 0, 0, 0.08);
+
+  /* Скругления */
+  --radius-sm: 6px;
+  --radius-md: 10px;
+  --radius-lg: 16px;
+  --radius-pill: 9999px;
+
+  /* Анимации */
+  --transition-base: 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+  --transition-fast: 0.15s ease;
+
+  /* Шрифты */
+  --font-sans: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+}
+
+/* --------------------------------------------------------------------------
+   2. Сброс стилей и базовые настройки (Reset & Base)
+   -------------------------------------------------------------------------- */
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: var(--font-sans);
+  background-color: var(--bg-page);
+  background-image: radial-gradient(at 0% 0%, rgba(79, 70, 229, 0.04) 0px, transparent 50%),
+                    radial-gradient(at 100% 100%, rgba(14, 165, 233, 0.04) 0px, transparent 50%);
+  background-attachment: fixed;
+  color: var(--text-primary);
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
+  min-height: 100vh;
+}
+
+input, button, textarea, select {
+  font: inherit;
+  color: inherit;
+}
+
+button {
+  cursor: pointer;
+  border: none;
+  background: none;
+}
+
+/* --------------------------------------------------------------------------
+   3. Каркас и контейнер приложения
+   -------------------------------------------------------------------------- */
+.app-container {
+  max-width: 1240px;
+  margin: 0 auto;
+  padding: 24px 20px 48px;
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+/* --------------------------------------------------------------------------
+   4. Шапка (Header)
+   -------------------------------------------------------------------------- */
+.app-header {
+  background: var(--bg-surface);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-lg);
+  padding: 20px 24px;
+  box-shadow: var(--shadow-sm);
+}
+
+.header-content {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 16px;
+}
+
+.logo-area {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.logo-icon {
+  width: 48px;
+  height: 48px;
+  border-radius: 12px;
+  background: linear-gradient(135deg, var(--primary) 0%, #6366f1 100%);
+  color: #ffffff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 4px 10px rgba(79, 70, 229, 0.3);
+  flex-shrink: 0;
+}
+
+.app-title {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: var(--text-primary);
+  line-height: 1.25;
+}
+
+.app-subtitle {
+  font-size: 0.875rem;
+  color: var(--text-muted);
+  margin-top: 2px;
+}
+
+/* --------------------------------------------------------------------------
+   5. Секция статистики (Stats Section)
+   -------------------------------------------------------------------------- */
+.stats-section {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 16px;
+}
+
+.stat-card {
+  background: var(--bg-surface);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-md);
+  padding: 16px 20px;
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  box-shadow: var(--shadow-sm);
+  transition: transform var(--transition-base), box-shadow var(--transition-base);
+}
+
+.stat-card:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-md);
+}
+
+.stat-icon {
+  width: 44px;
+  height: 44px;
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.stat-total .stat-icon {
+  background: #eef2ff;
+  color: var(--primary);
+}
+
+.stat-completed .stat-icon {
+  background: #ecfdf5;
+  color: #059669;
+}
+
+.stat-pending .stat-icon {
+  background: #fffbeb;
+  color: #d97706;
+}
+
+.stat-info {
+  display: flex;
+  flex-direction: column;
+}
+
+.stat-label {
+  font-size: 0.8125rem;
+  color: var(--text-muted);
+  font-weight: 500;
+}
+
+.stat-value {
+  font-size: 1.75rem;
+  font-weight: 700;
+  color: var(--text-primary);
+  line-height: 1.2;
+}
+
+.stat-progress {
+  align-items: center;
+}
+
+.stat-info-full {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.progress-labels {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.stat-percent {
+  font-weight: 700;
+  color: var(--primary);
+  font-size: 1rem;
+}
+
+.progress-bar-bg {
+  width: 100%;
+  height: 10px;
+  background: var(--bg-subtle);
+  border-radius: var(--radius-pill);
+  overflow: hidden;
+  border: 1px solid var(--border-color);
+}
+
+.progress-bar-fill {
+  height: 100%;
+  background: linear-gradient(90deg, var(--primary) 0%, #10b981 100%);
+  border-radius: var(--radius-pill);
+  transition: width 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* --------------------------------------------------------------------------
+   6. Основной макет (Main Layout)
+   -------------------------------------------------------------------------- */
+.main-layout {
+  display: grid;
+  grid-template-columns: 360px 1fr;
+  gap: 24px;
+  align-items: start;
+}
+
+/* Общие стили карточек */
+.card {
+  background: var(--bg-surface);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-lg);
+  padding: 24px;
+  box-shadow: var(--shadow-sm);
+}
+
+.card-title {
+  font-size: 1.1875rem;
+  font-weight: 600;
+  color: var(--text-primary);
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 20px;
+}
+
+/* --------------------------------------------------------------------------
+   7. Форма создания задачи (Task Form)
+   -------------------------------------------------------------------------- */
+.task-form-card {
+  position: sticky;
+  top: 24px;
+}
+
+.task-form {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.form-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+}
+
+.form-label {
+  font-size: 0.84rem;
+  font-weight: 600;
+  color: var(--text-secondary);
+}
+
+.required {
+  color: #ef4444;
+}
+
+.form-control {
+  width: 100%;
+  padding: 9px 12px;
+  border: 1.5px solid var(--border-color);
+  border-radius: var(--radius-md);
+  background: var(--bg-input);
+  color: var(--text-primary);
+  font-size: 0.9375rem;
+  transition: border-color var(--transition-fast), box-shadow var(--transition-fast);
+  outline: none;
+}
+
+.form-control:hover {
+  border-color: var(--border-hover);
+}
+
+.form-control:focus {
+  border-color: var(--border-focus);
+  box-shadow: 0 0 0 3px var(--primary-ring);
+}
+
+.form-control.input-invalid {
+  border-color: #ef4444;
+  box-shadow: 0 0 0 3px rgba(239, 68, 68, 0.2);
+}
+
+.form-textarea {
+  resize: vertical;
+  min-height: 72px;
+}
+
+.form-select, .form-select-sm {
+  cursor: pointer;
+}
+
+.field-error {
+  display: none;
+  font-size: 0.775rem;
+  color: #ef4444;
+  font-weight: 500;
+}
+
+.field-error.visible {
+  display: block;
+}
+
+/* Чекбокс в модалке */
+.form-checkbox-label {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 0.9rem;
+  font-weight: 500;
+  color: var(--text-secondary);
+  cursor: pointer;
+  user-select: none;
+  padding: 4px 0;
+}
+
+.form-checkbox {
+  width: 18px;
+  height: 18px;
+  accent-color: var(--primary);
+  cursor: pointer;
+}
+
+/* --------------------------------------------------------------------------
+   8. Кнопки (Buttons)
+   -------------------------------------------------------------------------- */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  font-size: 0.9375rem;
+  font-weight: 600;
+  padding: 10px 18px;
+  border-radius: var(--radius-md);
+  transition: all var(--transition-fast);
+  text-decoration: none;
+  user-select: none;
+}
+
+.btn:active {
+  transform: scale(0.98);
+}
+
+.btn-primary {
+  background: var(--primary);
+  color: #ffffff;
+  box-shadow: 0 2px 4px rgba(79, 70, 229, 0.25);
+}
+
+.btn-primary:hover {
+  background: var(--primary-hover);
+  box-shadow: 0 4px 8px rgba(79, 70, 229, 0.35);
+}
+
+.btn-secondary {
+  background: var(--bg-subtle);
+  color: var(--text-secondary);
+  border: 1px solid var(--border-color);
+}
+
+.btn-secondary:hover {
+  background: #e2e8f0;
+  color: var(--text-primary);
+}
+
+.btn-ghost {
+  background: transparent;
+  color: var(--text-muted);
+  border: 1px solid var(--border-color);
+  padding: 8px 14px;
+  font-size: 0.85rem;
+}
+
+.btn-ghost:hover {
+  background: var(--bg-subtle);
+  color: var(--primary);
+  border-color: var(--border-hover);
+}
+
+.btn-block {
+  width: 100%;
+}
+
+/* --------------------------------------------------------------------------
+   9. Панель управления списком задач (Toolbar, Filters, Sort)
+   -------------------------------------------------------------------------- */
+.tasks-list-card {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.tasks-toolbar {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  border-bottom: 1px solid var(--border-color);
+  padding-bottom: 18px;
+}
+
+.toolbar-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
+.toolbar-top .card-title {
+  margin-bottom: 0;
+}
+
+.badge-count {
+  background: var(--primary-light);
+  color: var(--primary);
+  font-size: 0.8125rem;
+  padding: 2px 8px;
+  border-radius: var(--radius-pill);
+  font-weight: 700;
+}
+
+.search-box {
+  position: relative;
+  display: flex;
+  align-items: center;
+  min-width: 260px;
+  flex: 1;
+  max-width: 360px;
+}
+
+.search-box svg {
+  position: absolute;
+  left: 12px;
+  color: var(--text-muted);
+  pointer-events: none;
+}
+
+.search-box input {
+  width: 100%;
+  padding: 8px 34px 8px 36px;
+  border: 1.5px solid var(--border-color);
+  border-radius: var(--radius-md);
+  font-size: 0.875rem;
+  background: var(--bg-input);
+  outline: none;
+  transition: all var(--transition-fast);
+}
+
+.search-box input:focus {
+  border-color: var(--border-focus);
+  box-shadow: 0 0 0 3px var(--primary-ring);
+}
+
+.clear-search-btn {
+  position: absolute;
+  right: 10px;
+  background: none;
+  border: none;
+  color: var(--text-muted);
+  font-size: 1.25rem;
+  line-height: 1;
+  padding: 0 4px;
+  cursor: pointer;
+}
+
+.clear-search-btn:hover {
+  color: var(--text-primary);
+}
+
+.toolbar-controls {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
+/* Фильтры (Filter Buttons) */
+.filters-group {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.filter-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 7px 12px;
+  background: var(--bg-subtle);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-pill);
+  font-size: 0.8125rem;
+  font-weight: 600;
+  color: var(--text-secondary);
+  transition: all var(--transition-fast);
+}
+
+.filter-btn:hover {
+  background: #e2e8f0;
+  color: var(--text-primary);
+}
+
+.filter-btn.active {
+  background: var(--primary);
+  border-color: var(--primary);
+  color: #ffffff;
+  box-shadow: 0 2px 4px rgba(79, 70, 229, 0.25);
+}
+
+.filter-count {
+  background: rgba(0, 0, 0, 0.08);
+  padding: 1px 6px;
+  border-radius: var(--radius-pill);
+  font-size: 0.75rem;
+}
+
+.filter-btn.active .filter-count {
+  background: rgba(255, 255, 255, 0.25);
+  color: #ffffff;
+}
+
+/* Сортировка */
+.sort-control {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.sort-label {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  font-size: 0.8125rem;
+  font-weight: 600;
+  color: var(--text-muted);
+  white-space: nowrap;
+}
+
+.form-select-sm {
+  padding: 6px 10px;
+  font-size: 0.8125rem;
+  border-radius: var(--radius-md);
+  border: 1.5px solid var(--border-color);
+  background: var(--bg-input);
+  outline: none;
+  cursor: pointer;
+}
+
+.form-select-sm:focus {
+  border-color: var(--border-focus);
+}
+
+/* --------------------------------------------------------------------------
+   10. Список задач и карточки (Tasks List & Cards)
+   -------------------------------------------------------------------------- */
+.tasks-list {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.task-item {
+  background: var(--bg-surface);
+  border: 1px solid var(--border-color);
+  border-left: 4px solid var(--priority-medium-pill);
+  border-radius: var(--radius-md);
+  padding: 16px 18px;
+  display: flex;
+  gap: 14px;
+  align-items: flex-start;
+  transition: transform var(--transition-fast), box-shadow var(--transition-fast), border-color var(--transition-fast);
+  position: relative;
+  animation: taskFadeIn 0.25s ease-out;
+}
+
+@keyframes taskFadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.task-item:hover {
+  box-shadow: var(--shadow-md);
+  border-color: var(--border-hover);
+}
+
+/* Цветовые полосы приоритета слева */
+.task-item.priority-high {
+  border-left-color: var(--priority-high-pill);
+}
+
+.task-item.priority-medium {
+  border-left-color: var(--priority-medium-pill);
+}
+
+.task-item.priority-low {
+  border-left-color: var(--priority-low-pill);
+}
+
+.task-item.is-completed {
+  border-left-color: #10b981;
+  background: #fbfcfd;
+}
+
+/* Кастомный чекбокс */
+.task-checkbox-wrapper {
+  padding-top: 2px;
+  flex-shrink: 0;
+}
+
+.task-checkbox-btn {
+  width: 22px;
+  height: 22px;
+  border-radius: 6px;
+  border: 2px solid #cbd5e1;
+  background: #ffffff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all var(--transition-fast);
+  cursor: pointer;
+}
+
+.task-checkbox-btn:hover {
+  border-color: var(--primary);
+  background: var(--primary-light);
+}
+
+.task-checkbox-btn:focus-visible {
+  outline: none;
+  box-shadow: 0 0 0 3px var(--primary-ring);
+}
+
+.task-checkbox-btn svg {
+  display: none;
+  stroke: #ffffff;
+}
+
+.is-completed .task-checkbox-btn {
+  background: #10b981;
+  border-color: #10b981;
+}
+
+.is-completed .task-checkbox-btn svg {
+  display: block;
+}
+
+/* Тело карточки */
+.task-content {
+  flex: 1;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.task-main {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.task-title {
+  font-size: 1.05rem;
+  font-weight: 600;
+  color: var(--text-primary);
+  word-break: break-word;
+  line-height: 1.35;
+  transition: color var(--transition-fast);
+}
+
+.is-completed .task-title {
+  text-decoration: line-through;
+  color: var(--text-light);
+}
+
+.task-desc {
+  font-size: 0.875rem;
+  color: var(--text-secondary);
+  line-height: 1.45;
+  white-space: pre-wrap;
+  word-break: break-word;
+}
+
+.is-completed .task-desc {
+  color: var(--text-light);
+}
+
+/* Метаданные карточки (Бейджи) */
+.task-meta {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 4px;
+}
+
+.badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  padding: 3px 9px;
+  border-radius: var(--radius-pill);
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.01em;
+  line-height: 1.2;
+}
+
+/* Бейджи приоритета */
+.badge-priority-high {
+  background: var(--priority-high-bg);
+  color: var(--priority-high-text);
+  border: 1px solid var(--priority-high-border);
+}
+
+.badge-priority-medium {
+  background: var(--priority-medium-bg);
+  color: var(--priority-medium-text);
+  border: 1px solid var(--priority-medium-border);
+}
+
+.badge-priority-low {
+  background: var(--priority-low-bg);
+  color: var(--priority-low-text);
+  border: 1px solid var(--priority-low-border);
+}
+
+/* Бейджи дедлайна */
+.badge-deadline {
+  background: var(--bg-subtle);
+  color: var(--text-secondary);
+  border: 1px solid var(--border-color);
+}
+
+.badge-deadline.overdue {
+  background: var(--status-overdue-bg);
+  color: var(--status-overdue-text);
+  border-color: var(--status-overdue-border);
+}
+
+.badge-deadline.due-today {
+  background: var(--status-today-bg);
+  color: var(--status-today-text);
+  border-color: var(--status-today-border);
+  font-weight: 700;
+}
+
+.badge-status-done {
+  background: var(--status-done-bg);
+  color: var(--status-done-text);
+  border: 1px solid var(--status-done-border);
+}
+
+/* Действия над задачей (Edit / Delete) */
+.task-actions {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  flex-shrink: 0;
+}
+
+.btn-icon {
+  width: 32px;
+  height: 32px;
+  border-radius: var(--radius-sm);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--text-muted);
+  transition: all var(--transition-fast);
+}
+
+.btn-icon:hover {
+  background: var(--bg-subtle);
+  color: var(--text-primary);
+}
+
+.btn-icon.edit-action:hover {
+  background: var(--primary-light);
+  color: var(--primary);
+}
+
+.btn-icon.delete-action:hover {
+  background: #fef2f2;
+  color: #dc2626;
+}
+
+/* --------------------------------------------------------------------------
+   11. Пустое состояние (Empty State)
+   -------------------------------------------------------------------------- */
+.empty-state {
+  text-align: center;
+  padding: 48px 24px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+}
+
+.empty-icon {
+  width: 72px;
+  height: 72px;
+  border-radius: 50%;
+  background: var(--bg-subtle);
+  color: var(--text-light);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 4px;
+}
+
+.empty-title {
+  font-size: 1.125rem;
+  font-weight: 600;
+  color: var(--text-primary);
+}
+
+.empty-desc {
+  font-size: 0.875rem;
+  color: var(--text-muted);
+  max-width: 420px;
+}
+
+/* --------------------------------------------------------------------------
+   12. Модальное окно (Modal Dialog)
+   -------------------------------------------------------------------------- */
+.modal-backdrop {
+  position: fixed;
+  inset: 0;
+  background: rgba(15, 23, 42, 0.55);
+  backdrop-filter: blur(4px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  z-index: 1000;
+  animation: modalFadeIn 0.2s ease-out;
+}
+
+@keyframes modalFadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+.modal-card {
+  background: var(--bg-surface);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-lg);
+  width: 100%;
+  max-width: 520px;
+  box-shadow: var(--shadow-modal);
+  padding: 24px;
+  position: relative;
+  animation: modalScaleIn 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+@keyframes modalScaleIn {
+  from {
+    opacity: 0;
+    transform: scale(0.95);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+.modal-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 18px;
+}
+
+.modal-title {
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: var(--text-primary);
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.modal-close-btn {
+  font-size: 1.5rem;
+  line-height: 1;
+  color: var(--text-muted);
+  width: 32px;
+  height: 32px;
+  border-radius: var(--radius-sm);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: background var(--transition-fast);
+}
+
+.modal-close-btn:hover {
+  background: var(--bg-subtle);
+  color: var(--text-primary);
+}
+
+.modal-form {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.modal-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 10px;
+  margin-top: 8px;
+}
+
+/* --------------------------------------------------------------------------
+   13. Уведомления (Toasts)
+   -------------------------------------------------------------------------- */
+.toast-container {
+  position: fixed;
+  bottom: 24px;
+  right: 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  z-index: 2000;
+  pointer-events: none;
+}
+
+.toast {
+  pointer-events: auto;
+  background: #1e293b;
+  color: #ffffff;
+  padding: 12px 16px;
+  border-radius: var(--radius-md);
+  box-shadow: var(--shadow-lg);
+  font-size: 0.875rem;
+  font-weight: 500;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  animation: toastSlideIn 0.25s ease-out;
+  max-width: 380px;
+}
+
+@keyframes toastSlideIn {
+  from {
+    opacity: 0;
+    transform: translateY(16px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.toast.toast-success {
+  border-left: 4px solid #10b981;
+}
+
+.toast.toast-info {
+  border-left: 4px solid var(--primary);
+}
+
+.toast.toast-warning {
+  border-left: 4px solid #f59e0b;
+}
+
+.toast.toast-danger {
+  border-left: 4px solid #ef4444;
+}
+
+.toast-message {
+  flex: 1;
+}
+
+/* --------------------------------------------------------------------------
+   14. Подвал (Footer)
+   -------------------------------------------------------------------------- */
+.app-footer {
+  text-align: center;
+  padding: 16px 0;
+  font-size: 0.8125rem;
+  color: var(--text-muted);
+}
+
+/* --------------------------------------------------------------------------
+   15. Адаптивность для мобильных и планшетов (Media Queries)
+   -------------------------------------------------------------------------- */
+@media (max-width: 960px) {
+  .main-layout {
+    grid-template-columns: 1fr;
+  }
+
+  .task-form-card {
+    position: static;
+  }
+}
+
+@media (max-width: 768px) {
+  .app-container {
+    padding: 16px 12px 36px;
+    gap: 16px;
+  }
+
+  .app-header {
+    padding: 16px;
+  }
+
+  .app-title {
+    font-size: 1.25rem;
+  }
+
+  .header-content {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .header-content .btn {
+    width: 100%;
+  }
+
+  .stats-section {
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+  }
+
+  .stat-card {
+    padding: 12px 14px;
+    gap: 10px;
+  }
+
+  .stat-icon {
+    width: 36px;
+    height: 36px;
+  }
+
+  .stat-value {
+    font-size: 1.4rem;
+  }
+
+  .stat-card.stat-progress {
+    grid-column: span 2;
+  }
+
+  .card {
+    padding: 16px;
+    border-radius: var(--radius-md);
+  }
+
+  .toolbar-top {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .search-box {
+    max-width: 100%;
+    min-width: unset;
+  }
+
+  .toolbar-controls {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 10px;
+  }
+
+  .filters-group {
+    overflow-x: auto;
+    padding-bottom: 4px;
+    white-space: nowrap;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  .sort-control {
+    justify-content: space-between;
+  }
+
+  .sort-control .form-select-sm {
+    flex: 1;
+  }
+
+  .task-item {
+    padding: 12px 14px;
+  }
+
+  .toast-container {
+    left: 16px;
+    right: 16px;
+    bottom: 16px;
+  }
+
+  .toast {
+    max-width: 100%;
+  }
+}
+
+@media (max-width: 480px) {
+  .form-row {
+    grid-template-columns: 1fr;
+  }
+
+  .modal-card {
+    padding: 18px 14px;
+  }
+
+  .modal-actions {
+    flex-direction: column;
+  }
+
+  .modal-actions .btn {
+    width: 100%;
+  }
+}
