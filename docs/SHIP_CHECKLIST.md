@@ -1,35 +1,36 @@
 # Ship Checklist
 
-Status: READY
+Status: NOT READY
 
 ## Product
-- [x] Acceptance criteria satisfied with evidence (все критерии ТЗ реализованы и протестированы)
-- [x] Primary user journey works (добавление, редактирование, отметка выполнения, удаление, сохранение)
-- [x] Required states exist (активные, выполненные, высокий приоритет, пустое состояние)
+- [ ] Acceptance criteria satisfied with evidence
+- [ ] Primary user journey works
+- [ ] Required states exist
 
 ## Engineering
-- [x] Static/smoke checks run (`python scripts/check.sh`, `node --check project/script.js` — 0 ошибок)
-- [x] Runtime/console errors understood (отсутствуют ошибки в рантайме)
-- [x] Responsive behavior checked (360px мобильный, 768px планшет, 1200px десктоп)
-- [x] Git checkpoint created for release candidate
+- [ ] Static/smoke checks run
+- [ ] Runtime/console errors understood
+- [ ] Responsive behavior checked
+- [ ] Git checkpoint created for release candidate
 
 ## UX / Quality
-- [x] Visual review completed (`docs/VISUAL_QA.md` — PASS)
-- [x] Accessibility review completed (`docs/ACCESSIBILITY.md` — PASS)
-- [x] Performance review completed (`docs/PERFORMANCE.md` — PASS)
-- [x] Blocker/high defects resolved or explicitly blocked
+- [ ] Visual review completed
+- [ ] Accessibility review completed
+- [ ] Performance review completed
+- [ ] Blocker/high defects resolved or explicitly blocked
 
 ## Documentation
-- [x] `docs/SOURCES.md` updated
-- [x] `docs/DESIGN.md` updated
-- [x] `docs/QA.md` updated
-- [x] `docs/VISUAL_QA.md` updated
-- [x] `docs/ACCESSIBILITY.md` updated
-- [x] `docs/PERFORMANCE.md` updated
-- [x] `docs/RESULT.md` updated
+- [ ] `docs/SOURCES.md` updated
+- [ ] `docs/DESIGN.md` updated
+- [ ] `docs/QA.md` updated
+- [ ] `docs/VISUAL_QA.md` updated
+- [ ] `docs/ACCESSIBILITY.md` updated
+- [ ] `docs/PERFORMANCE.md` updated
+- [ ] `docs/RESULT.md` updated
 
 ## Release decision
 
-PASS
+PASS / BLOCKED
 
-Reason: Все функциональные требования практического задания выполнены на 100%. Проведены функциональные и интеграционные тесты (`tests/test-app.js`, `tests/test-dom-lifecycle.js`), код чистый, самодостаточный, без сторонних фреймворков.
+Reason:
+

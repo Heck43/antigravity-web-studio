@@ -27,6 +27,17 @@ For non-trivial UI work, research public references first. Use Refero when conne
 
 The primary orchestrator owns the delivery. Delegate specialists using the subagent tool when useful. Research/design can run in parallel; implementation follows a usable design direction; QA/review follows a stable build. Avoid concurrent edits to the same production files unless isolated in a worktree.
 
+## Multi-project workspace architecture
+
+This workspace is a reusable multi-project web development studio:
+- `projects/`: Contains individual standalone projects (e.g. `projects/<project-slug>/`). Each project has its own isolated code, assets, and documentation.
+- When creating a NEW web product/app:
+  1. Determine or choose an appropriate slug, creating `projects/<project-slug>/` (or use `src/` if the user specifies working on the active starter template).
+  2. Maintain and build the product inside its isolated directory.
+  3. Keep project documentation (brief, plan, qa) in `projects/<project-slug>/docs/` or update root `docs/` only if explicitly requested.
+  4. NEVER overwrite or delete existing projects inside `projects/`.
+- If the user refers to an existing project (e.g. `study-task-manager`), work directly within its subfolder.
+
 ## Default stack
 
 Prefer HTML5 + CSS3 + vanilla JavaScript unless the user specifies another stack. Keep dependencies minimal and do not silently replace the requested stack.
