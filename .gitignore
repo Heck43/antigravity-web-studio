@@ -1,11 +1,38 @@
+# OS generated files
 .DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
 Thumbs.db
+
+# Environment & Secrets
 .env
 .env.*
 !.env.example
+*.pem
+*.key
+
+# Dependencies & Build Output
 node_modules/
 dist/
 build/
 coverage/
+.turbo/
+
+# Logs & Temporary files
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+*.tmp
+
+# IDE & Editor configs
 .vscode/
 .idea/
+*.sublime-project
+*.sublime-workspace
+
+# Workspace optional configs
+.agents/mcp_config.json.disabled

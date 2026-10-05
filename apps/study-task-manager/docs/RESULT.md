@@ -34,16 +34,16 @@
   - Полноценная SPA-логика без перезагрузки страницы (`e.preventDefault()`).
 
 ## 2. Структура созданных файлов
-- [`project/index.html`](file:///c:/Users/heck43/Downloads/antigravity-web-product-workspace-v7/project/index.html) — семантическая разметка, ARIA-атрибуты, карточки статистики, форма добавления, список задач и модальное окно.
-- [`project/style.css`](file:///c:/Users/heck43/Downloads/antigravity-web-product-workspace-v7/project/style.css) — современная дизайн-система на CSS Custom Properties, адаптивная сетка, бейджи приоритетов и адаптация под мобильные устройства.
-- [`project/script.js`](file:///c:/Users/heck43/Downloads/antigravity-web-product-workspace-v7/project/script.js) — независимая модульная JS-логика без фреймворков и библиотек.
-- [`index.html`](file:///c:/Users/heck43/Downloads/antigravity-web-product-workspace-v7/index.html) — корневой шлюз для автоматического запуска.
-- [`scripts/verify-task-manager.js`](file:///c:/Users/heck43/Downloads/antigravity-web-product-workspace-v7/scripts/verify-task-manager.js) — скрипт автоматической верификации.
+- [`project/index.html`](./project/index.html) — семантическая разметка, ARIA-атрибуты, карточки статистики, форма добавления, список задач и модальное окно.
+- [`project/style.css`](./project/style.css) — современная дизайн-система на CSS Custom Properties, адаптивная сетка, бейджи приоритетов и адаптация под мобильные устройства.
+- [`project/script.js`](./project/script.js) — независимая модульная JS-логика без фреймворков и библиотек.
+- [`index.html`](./index.html) — корневой шлюз для автоматического запуска.
+- [`scripts/verify-task-manager.js`](./scripts/verify-task-manager.js) — скрипт автоматической верификации.
 - Документация:
-  - [`docs/BRIEF.md`](file:///c:/Users/heck43/Downloads/antigravity-web-product-workspace-v7/docs/BRIEF.md)
-  - [`docs/PLAN.md`](file:///c:/Users/heck43/Downloads/antigravity-web-product-workspace-v7/docs/PLAN.md)
-  - [`docs/DESIGN.md`](file:///c:/Users/heck43/Downloads/antigravity-web-product-workspace-v7/docs/DESIGN.md)
-  - [`docs/SOURCES.md`](file:///c:/Users/heck43/Downloads/antigravity-web-product-workspace-v7/docs/SOURCES.md)
+  - [`docs/BRIEF.md`](./docs/BRIEF.md)
+  - [`docs/PLAN.md`](./docs/PLAN.md)
+  - [`docs/DESIGN.md`](./docs/DESIGN.md)
+  - [`docs/SOURCES.md`](./docs/SOURCES.md)
 
 ## 3. Проведенное тестирование
 1. Синтаксическая валидация JavaScript через `node -c project/script.js` — ошибок нет (код 0).
