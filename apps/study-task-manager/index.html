@@ -1,0 +1,308 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Менеджер учебных задач</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="app-container">
+    <!-- Шапка приложения -->
+    <header class="app-header">
+      <div class="header-content">
+        <div class="header-icon" aria-hidden="true">
+          <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"></path>
+            <path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"></path>
+            <line x1="9" y1="7" x2="15" y2="7"></line>
+            <line x1="9" y1="11" x2="13" y2="11"></line>
+          </svg>
+        </div>
+        <div class="header-text">
+          <h1>Менеджер учебных задач</h1>
+          <p class="subtitle">Организуйте дедлайны, лабораторные, экзамены и курсовые</p>
+        </div>
+      </div>
+      <div class="current-date-badge" id="currentDateBadge" aria-label="Текущая дата"></div>
+    </header>
+
+    <!-- Секция статистики -->
+    <section class="stats-section" aria-label="Статистика задач">
+      <div class="stats-grid">
+        <div class="stat-card stat-total">
+          <div class="stat-icon" aria-hidden="true">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
+              <polyline points="14 2 14 8 20 8"></polyline>
+              <line x1="16" y1="13" x2="8" y2="13"></line>
+              <line x1="16" y1="17" x2="8" y2="17"></line>
+            </svg>
+          </div>
+          <div class="stat-info">
+            <span class="stat-label">Всего задач</span>
+            <span class="stat-value" id="statTotal">0</span>
+          </div>
+        </div>
+
+        <div class="stat-card stat-active">
+          <div class="stat-icon" aria-hidden="true">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <circle cx="12" cy="12" r="10"></circle>
+              <polyline points="12 6 12 12 16 14"></polyline>
+            </svg>
+          </div>
+          <div class="stat-info">
+            <span class="stat-label">В процессе</span>
+            <span class="stat-value" id="statActive">0</span>
+          </div>
+        </div>
+
+        <div class="stat-card stat-completed">
+          <div class="stat-icon" aria-hidden="true">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path>
+              <polyline points="22 4 12 14.01 9 11.01"></polyline>
+            </svg>
+          </div>
+          <div class="stat-info">
+            <span class="stat-label">Выполнено</span>
+            <span class="stat-value" id="statCompleted">0</span>
+          </div>
+        </div>
+
+        <div class="stat-card stat-progress">
+          <div class="progress-header">
+            <span class="stat-label">Прогресс учебы</span>
+            <span class="progress-percent" id="statPercent">0%</span>
+          </div>
+          <div class="progress-bar-bg" role="progressbar" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0" id="progressBar">
+            <div class="progress-bar-fill" id="progressBarFill"></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Основной контент: Две колонки на десктопе, одна на мобильных -->
+    <main class="main-layout">
+      <!-- Форма добавления задачи -->
+      <section class="form-section card" aria-labelledby="formTitle">
+        <div class="card-header">
+          <h2 id="formTitle">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+              <line x1="12" y1="5" x2="12" y2="19"></line>
+              <line x1="5" y1="12" x2="19" y2="12"></line>
+            </svg>
+            Новая учебная задача
+          </h2>
+        </div>
+
+        <form id="taskForm" class="task-form" novalidate>
+          <div class="form-group">
+            <label for="taskTitle" class="form-label required">Название задачи</label>
+            <input 
+              type="text" 
+              id="taskTitle" 
+              name="title" 
+              class="form-control" 
+              placeholder="Например: Сдать лабораторную работу №3" 
+              required 
+              maxlength="120"
+              autocomplete="off"
+            >
+            <span class="form-error" id="taskTitleError">Пожалуйста, укажите название задачи</span>
+          </div>
+
+          <div class="form-group">
+            <label for="taskDescription" class="form-label">Описание</label>
+            <textarea 
+              id="taskDescription" 
+              name="description" 
+              class="form-control" 
+              placeholder="Укажите подробности, вопросы к преподавателю или требования к оформлению..." 
+              rows="3"
+            ></textarea>
+          </div>
+
+          <div class="form-row">
+            <div class="form-group col-half">
+              <label for="taskPriority" class="form-label required">Приоритет</label>
+              <select id="taskPriority" name="priority" class="form-control">
+                <option value="low">Низкий (плановое)</option>
+                <option value="medium" selected>Средний (стандарт)</option>
+                <option value="high">Высокий (срочно/важно)</option>
+              </select>
+            </div>
+
+            <div class="form-group col-half">
+              <label for="taskDueDate" class="form-label required">Срок выполнения (дедлайн)</label>
+              <input 
+                type="date" 
+                id="taskDueDate" 
+                name="dueDate" 
+                class="form-control" 
+                required
+              >
+              <span class="form-error" id="taskDueDateError">Пожалуйста, выберите дату сдачи</span>
+            </div>
+          </div>
+
+          <div class="form-actions">
+            <button type="submit" class="btn btn-primary" id="btnSubmitTask">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+                <line x1="12" y1="5" x2="12" y2="19"></line>
+                <line x1="5" y1="12" x2="19" y2="12"></line>
+              </svg>
+              Добавить задачу
+            </button>
+            <button type="reset" class="btn btn-outline" id="btnResetTask">Очистить</button>
+          </div>
+        </form>
+      </section>
+
+      <!-- Список задач и фильтры -->
+      <section class="tasks-section card" aria-labelledby="tasksTitle">
+        <div class="tasks-header">
+          <h2 id="tasksTitle">Учебный план</h2>
+          <div class="tasks-count-pill" id="filteredCountBadge">0 задач</div>
+        </div>
+
+        <!-- Панель инструментов: Фильтры, Поиск и Сортировка -->
+        <div class="toolbar-container">
+          <!-- Поисковая строка -->
+          <div class="search-box">
+            <svg class="search-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+              <circle cx="11" cy="11" r="8"></circle>
+              <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+            </svg>
+            <input 
+              type="text" 
+              id="searchInput" 
+              class="search-input" 
+              placeholder="Поиск по названию или описанию..."
+              aria-label="Поиск по задачам"
+            >
+            <button type="button" class="search-clear-btn" id="searchClearBtn" title="Очистить поиск" aria-label="Очистить поиск" hidden>&times;</button>
+          </div>
+
+          <!-- Контролы: Фильтры и Сортировка -->
+          <div class="controls-row">
+            <!-- Фильтры по статусам и приоритету -->
+            <div class="filters-group" role="tablist" aria-label="Фильтры задач">
+              <button type="button" class="filter-chip active" data-filter="all" role="tab" aria-selected="true">
+                Все
+              </button>
+              <button type="button" class="filter-chip" data-filter="active" role="tab" aria-selected="false">
+                Активные
+              </button>
+              <button type="button" class="filter-chip" data-filter="completed" role="tab" aria-selected="false">
+                Выполненные
+              </button>
+              <button type="button" class="filter-chip filter-chip-high" data-filter="high" role="tab" aria-selected="false">
+                С высоким приоритетом
+              </button>
+            </div>
+
+            <!-- Сортировка -->
+            <div class="sort-group">
+              <label for="sortSelect" class="sort-label">Сортировка:</label>
+              <select id="sortSelect" class="sort-select" aria-label="Сортировать задачи">
+                <option value="dueDate-asc">Сначала ближайшие дедлайны</option>
+                <option value="dueDate-desc">Сначала дальние дедлайны</option>
+                <option value="priority-desc">По приоритету (высокий → низкий)</option>
+                <option value="created-desc">Сначала новые добавленные</option>
+              </select>
+            </div>
+          </div>
+        </div>
+
+        <!-- Список задач -->
+        <div class="task-list-wrapper">
+          <ul id="taskList" class="task-list" role="list">
+            <!-- Задачи рендерятся через JavaScript -->
+          </ul>
+
+          <!-- Пустое состояние -->
+          <div id="emptyState" class="empty-state" hidden>
+            <div class="empty-icon" aria-hidden="true">
+              <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                <path d="M9 11l3 3L22 4"></path>
+                <path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"></path>
+              </svg>
+            </div>
+            <h3 id="emptyStateTitle">Задач не найдено</h3>
+            <p id="emptyStateMessage">Создайте первую учебную задачу с помощью формы слева или сбросьте фильтры.</p>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <!-- Модальное окно редактирования задачи -->
+    <div id="editModal" class="modal-overlay" role="dialog" aria-modal="true" aria-labelledby="editModalTitle" hidden>
+      <div class="modal-card">
+        <div class="modal-header">
+          <h3 id="editModalTitle">Редактирование задачи</h3>
+          <button type="button" class="modal-close-btn" id="editModalCloseBtn" aria-label="Закрыть окно">&times;</button>
+        </div>
+
+        <form id="editTaskForm" novalidate>
+          <input type="hidden" id="editTaskId">
+
+          <div class="form-group">
+            <label for="editTaskTitle" class="form-label required">Название задачи</label>
+            <input 
+              type="text" 
+              id="editTaskTitle" 
+              class="form-control" 
+              required 
+              maxlength="120"
+            >
+            <span class="form-error" id="editTaskTitleError">Пожалуйста, укажите название задачи</span>
+          </div>
+
+          <div class="form-group">
+            <label for="editTaskDescription" class="form-label">Описание</label>
+            <textarea 
+              id="editTaskDescription" 
+              class="form-control" 
+              rows="3"
+            ></textarea>
+          </div>
+
+          <div class="form-row">
+            <div class="form-group col-half">
+              <label for="editTaskPriority" class="form-label required">Приоритет</label>
+              <select id="editTaskPriority" class="form-control">
+                <option value="low">Низкий (плановое)</option>
+                <option value="medium">Средний (стандарт)</option>
+                <option value="high">Высокий (срочно/важно)</option>
+              </select>
+            </div>
+
+            <div class="form-group col-half">
+              <label for="editTaskDueDate" class="form-label required">Срок сдачи (дедлайн)</label>
+              <input 
+                type="date" 
+                id="editTaskDueDate" 
+                class="form-control" 
+                required
+              >
+              <span class="form-error" id="editTaskDueDateError">Пожалуйста, выберите дату сдачи</span>
+            </div>
+          </div>
+
+          <div class="modal-actions">
+            <button type="button" class="btn btn-outline" id="editModalCancelBtn">Отмена</button>
+            <button type="submit" class="btn btn-primary" id="editModalSaveBtn">Сохранить изменения</button>
+          </div>
+        </form>
+      </div>
+    </div>
+
+    <!-- Всплывающие уведомления (Toasts) -->
+    <div id="toastContainer" class="toast-container" aria-live="polite"></div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>

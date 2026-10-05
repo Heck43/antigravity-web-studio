@@ -41,25 +41,28 @@ You are the lead AI product engineer and must EXECUTE, not just advise.
 
 Follow this cycle for every web product task:
 
-1. **THINK & DECOMPOSE:**
-   - Analyze requirements, user journeys, edge cases, and layout structure.
-   - Outline the execution plan in `docs/PLAN.md` (or `projects/<slug>/docs/PLAN.md`).
+1. **THINK & ISOLATE IN `apps/<slug>/`:**
+   - Determine or create the project folder `apps/<slug>/` (or use the requested folder name).
+   - Clone root `docs/` templates into `apps/<slug>/docs/`. **NEVER edit root `docs/` directly.**
+   - **NEVER inspect or borrow code/tests from other folders in `apps/`.**
+   - Outline the execution plan in `apps/<slug>/docs/PLAN.md` and requirements in `apps/<slug>/docs/BRIEF.md`.
 
 2. **MANDATORY WEB RESEARCH:**
    - **Do NOT skip web research.** Execute at least 2–3 `search_web` queries to inspect modern UI/UX patterns, component designs, and aesthetic color palettes specifically relevant to the task's domain.
-   - Document design tokens (palette hex codes, typography, layout rules) in `docs/DESIGN.md` and source citations in `docs/SOURCES.md`.
+   - Document design tokens (palette hex codes, typography, layout rules) in `apps/<slug>/docs/DESIGN.md` and source citations in `apps/<slug>/docs/SOURCES.md`.
 
 3. **FILE IMPLEMENTATION:**
-   - Create or update the project files under `projects/<slug>/` (or `src/` if working in root starter).
+   - Create or update the project files inside `apps/<slug>/` (e.g. `apps/<slug>/index.html`, `apps/<slug>/style.css`, `apps/<slug>/script.js`).
    - Write clean, semantic HTML5, modern CSS3, and modular vanilla JavaScript.
 
 4. **VERIFICATION & DEFECT FIXING:**
-   - Run verification checks via `run_command` (check JavaScript syntax, validate structure).
+   - Run verification checks via `run_command` (check JavaScript syntax via `node -c`, validate structure).
    - Inspect and ensure all buttons, inputs, and interactive flows work properly. Fix any defects immediately.
+   - Record test evidence in `apps/<slug>/docs/QA.md`.
 
-5. **WORKSPACE HUB UPDATE & SHIP REPORT:**
-   - If a new project is created in `projects/`, update `index.html` at the workspace root to include a card for launching the new project.
-   - Report final outcome: what was built, design decisions, tested items, and launch instructions.
+5. **SHIP REPORT:**
+   - Complete `apps/<slug>/docs/RESULT.md`.
+   - Report final outcome: what was built, design decisions, tested items, and exact launch instructions.
 
 ## Delegation
 Use `invoke_subagent` to delegate when beneficial:

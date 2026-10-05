@@ -1,47 +1,73 @@
-# Antigravity 2.0 — Web Product AI Studio
+# Antigravity 2.0 — Multi-App Web Studio
 
-You are an autonomous, execution-first lead web product engineer and designer. This workspace is a reusable web development studio for creating original, modern, robust web applications from scratch.
+This workspace is a reusable multi-project web development studio for creating independent, fully isolated web applications.
+
+---
+
+## 🏗️ Isolated Project Architecture (Strict Rule)
+
+Every web application MUST be created in its own isolated directory inside `apps/<app-slug>/`.
+
+### Self-Contained Project Structure:
+Each project must contain everything needed for its execution and documentation:
+```text
+apps/<app-slug>/
+├── docs/                 <-- Cloned from root `docs/` templates and filled specifically for THIS app
+│   ├── BRIEF.md
+│   ├── PLAN.md
+│   ├── DESIGN.md
+│   ├── SOURCES.md
+│   ├── QA.md
+│   └── RESULT.md
+├── index.html            <-- Main application entry
+├── style.css             <-- Application styles
+├── script.js             <-- Application logic
+└── (assets / tests)
+```
+
+### The Isolation Protocol:
+1. **Root `docs/` is a READ-ONLY Master Template:**
+   - **NEVER edit files in the root `docs/` folder directly.**
+   - When starting a new project, create `apps/<app-slug>/docs/` and copy the template files from root `docs/` into it.
+   - All research, planning, design tokens, and QA reports for this project MUST be written ONLY into `apps/<app-slug>/docs/`.
+   - The root `docs/` folder must ALWAYS remain a clean template for future projects.
+2. **Strict Project Boundaries:**
+   - When working on `apps/<app-a>/`, **NEVER inspect, read, copy, or modify files from other folders inside `apps/`**.
+   - Each project is completely independent from blank slate.
+3. **Flexible Sub-structures:**
+   - If the user prompt specifically asks for a `project/` folder (e.g. `project/ ├── index.html ├── style.css └── script.js`), place it inside the project directory: `apps/<app-slug>/project/` (or directly inside `apps/<app-slug>/`).
 
 ---
 
 ## The 5-Phase Development Protocol
 
-Whenever the user asks to build, create, or implement a web product, you MUST follow this strict sequence:
+Whenever the user asks to build or create a web application:
 
-### Phase 1: THINK & DECOMPOSE (From Scratch)
-- **Do not jump into coding immediately.**
-- Treat every user request as a **brand new, fresh project**. Never search for or reuse previous solutions or old tests.
-- Carefully analyze the user's request, identify the primary user journey, key interactive states (loading, empty, active, completed, error), and edge cases.
-- Record the product brief and step-by-step implementation milestones in `docs/BRIEF.md` and `docs/PLAN.md`.
+### Phase 1: THINK & ISOLATE
+- Determine or create the project directory (e.g. `apps/<slug>/`).
+- Create `apps/<slug>/docs/` by copying clean templates from root `docs/`.
+- Analyze user goals, user journeys, edge cases, and write the plan into `apps/<slug>/docs/PLAN.md` and `apps/<slug>/docs/BRIEF.md`.
 
 ### Phase 2: MANDATORY INTERNET RESEARCH & DESIGN
-- **Active web search is mandatory:** You MUST NOT guess visual design or rely on bland generic styles.
-- Call `search_web` at least 2–3 times to find real-world design inspiration, modern UI trends, component layouts, and color palettes specific to the task's domain (e.g. `modern <topic> web app ui design patterns`, `clean minimalist aesthetic <topic> color palette`).
-- Extract concrete design tokens (palette hex codes, font hierarchy, card elevation, border-radii, transitions) and document them in `docs/DESIGN.md`.
-- Save all research URLs and citations in `docs/SOURCES.md`.
+- **Active web search is mandatory:** Execute at least 2–3 live web searches via `search_web` for modern UI/UX design patterns, color palettes, and component layouts specifically for this project.
+- Save design tokens and styles in `apps/<slug>/docs/DESIGN.md`.
+- Save all research URLs and citations in `apps/<slug>/docs/SOURCES.md`.
 
 ### Phase 3: STRICT FILE IMPLEMENTATION (ZERO CODE IN CHAT)
-- **NEVER output raw code, full HTML/CSS/JS, or large code blocks into the chat.**
-- ALL code must be written directly into workspace files using `write_to_file` and `replace_file_content`.
-- Use the project structure requested by the user (defaulting to `project/index.html`, `project/style.css`, `project/script.js` or `src/`).
+- **NEVER output raw code, full HTML/CSS/JS, or large code blocks into chat.**
+- Write code directly into `apps/<slug>/index.html`, `apps/<slug>/style.css`, `apps/<slug>/script.js` using `write_to_file`.
 - Use semantic HTML5, modern CSS3 (custom properties, flex/grid, micro-interactions, responsive mobile/desktop), and clean modular vanilla JavaScript.
-- Chat messages should only contain concise progress updates, design rationale, and clickable links to created files.
 
 ### Phase 4: VERIFICATION & TESTING
-- **Never claim a project works without verifying.**
-- Execute checks via `run_command` (e.g. syntax checks on JavaScript files via `node -c`, HTML structure validation, verifying event listeners).
-- Test primary interactions, responsiveness, and verify there are no uncaught console errors.
-- Fix all detected bugs before reporting completion.
+- Never claim a project works without verifying.
+- Execute checks via `run_command` (e.g. syntax checks on JavaScript files via `node -c`, HTML structure validation).
+- Record QA evidence in `apps/<slug>/docs/QA.md`. Fix any defects immediately.
 
 ### Phase 5: SHIP & REPORT
-- Provide a final report containing:
-  1. What was built and key design decisions.
-  2. Created/modified files with clickable links.
-  3. Tests and checks that were actually executed.
-  4. Exact instructions on how to launch/preview the project in a browser.
+- Complete `apps/<slug>/docs/RESULT.md`.
+- Provide a concise final report: what was built, design decisions, clickable links to created files, and exact launch instructions.
 
 ---
 
-## Workspace Rules & Clean Slate Principle
-- **Fresh Build:** Every new assignment must be built cleanly and independently.
-- **Default Stack:** Prefer HTML5 + CSS3 + vanilla JavaScript unless the user explicitly requests another stack. Keep dependencies minimal, performant, and self-contained.
+## Default Stack
+Prefer HTML5 + CSS3 + vanilla JavaScript unless the user explicitly requests another stack. Keep dependencies minimal, performant, and self-contained.
