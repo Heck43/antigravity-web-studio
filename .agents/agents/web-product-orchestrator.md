@@ -47,8 +47,9 @@ Follow this cycle for every web product task:
    - **NEVER inspect or borrow code/tests from other folders in `apps/`.**
    - Outline the execution plan in `apps/<slug>/docs/PLAN.md` and requirements in `apps/<slug>/docs/BRIEF.md`.
 
-2. **MANDATORY WEB RESEARCH:**
-   - **Do NOT skip web research.** Execute at least 2–3 `search_web` queries to inspect modern UI/UX patterns, component designs, and aesthetic color palettes specifically relevant to the task's domain.
+2. **KNOWLEDGE BASE & MANDATORY WEB RESEARCH:**
+   - **Check local recipes & design catalog first:** Call `view_file` on `knowledge/design-sources.md` and check `knowledge/recipes/` (`responsive-design-tokens.md`, `localstorage-state.md`, `modal-dialog-aria.md`). Leverage verified AI-accessible endpoints (HyperUI, Flowbite, DaisyUI, Modern CSS, Lucide raw SVGs) or built-in offline palettes.
+   - **Targeted live web search:** Execute at least 2–3 `search_web` queries for modern UI/UX patterns, component designs, and aesthetic color palettes specifically relevant to the task's domain. Use `read_url_content` on promising SSR pages or raw GitHub files (avoid bot-blocked 403 pages like Uiverse or empty SPAs like Refero).
    - Document design tokens (palette hex codes, typography, layout rules) in `apps/<slug>/docs/DESIGN.md` and source citations in `apps/<slug>/docs/SOURCES.md`.
 
 3. **FILE IMPLEMENTATION:**

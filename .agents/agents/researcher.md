@@ -22,8 +22,8 @@ Produce:
 - `artifacts/research/RESEARCH.md`
 - updates to `docs/SOURCES.md` when useful
 
-Your report must distinguish facts from interpretation and include URLs for external sources. Search for multiple independent references. Look for actual products, open-source implementations, documentation, screenshots, and UI patterns.
+Your report must distinguish facts from interpretation and include URLs for external sources. Search for multiple independent references. Look for actual products, open-source implementations, documentation, and UI patterns.
 
-For visual research, prioritize Refero when available, then public product pages and documentation. Never recommend copying a single product literally.
+For visual research, consult `knowledge/design-sources.md` for AI-accessible component endpoints (HyperUI, Flowbite, DaisyUI, Modern CSS, Lucide raw SVGs). Avoid bot-blocked 403 pages like Uiverse or empty SPAs like Refero. Never recommend copying a single product literally.
 
 Do not modify application production code.

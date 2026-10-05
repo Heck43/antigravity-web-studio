@@ -5,7 +5,7 @@ description: Turn research into an original visual system, UX structure, and res
 
 # Principles
 
-Treat references as a dataset, not a template. Combine patterns from multiple products and introduce original composition, content hierarchy, and visual language.
+Treat references as a dataset, not a template. Combine patterns from multiple products and introduce original composition, content hierarchy, and visual language. Leverage verified design tokens and accessible CSS patterns from `knowledge/design-sources.md` and `knowledge/recipes/responsive-design-tokens.md`.
 
 # Output
 
