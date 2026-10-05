@@ -48,6 +48,14 @@ Whenever the user asks to build or create a web application:
 - Create `apps/<slug>/docs/` by copying clean templates from root `docs/`.
 - Analyze user goals, user journeys, edge cases, and write the plan into `apps/<slug>/docs/PLAN.md` and `apps/<slug>/docs/BRIEF.md`.
 
+### Phase 1.5: CLARIFY LAYOUT & PREFERENCES (`ask_question`)
+- **Consult the user on layout and aesthetic choices:** Before locking down the implementation, if the user's prompt leaves UI structure or visual decisions open, call `ask_question` to let the user choose:
+  - **Layout & Structure:** (e.g. sidebar navigation vs top navigation bar, split-view dashboard vs single column).
+  - **Component Placement:** (e.g. where to put search/filter bars, stats widgets, action buttons).
+  - **Visual Theme:** (e.g. dark modern slate vs light clean minimalist).
+- Always provide 2–4 concise options, marking the recommended choice with `(Recommended)`.
+- Respect and incorporate the user's selections into the design tokens and layout plan.
+
 ### Phase 2: MANDATORY INTERNET RESEARCH & DESIGN
 - **Active web search is mandatory:** Execute at least 2–3 live web searches via `search_web` for modern UI/UX design patterns, color palettes, and component layouts specifically for this project.
 - Save design tokens and styles in `apps/<slug>/docs/DESIGN.md`.
