@@ -606,17 +606,25 @@
     if (dom.editTitleError) dom.editTitleError.classList.remove('visible');
     if (dom.editDeadlineError) dom.editDeadlineError.classList.remove('visible');
 
-    dom.editModal.hidden = false;
+    if (dom.editModal) {
+      dom.editModal.hidden = false;
+      dom.editModal.classList.add('is-open');
+      dom.editModal.style.display = 'flex';
+    }
     document.body.style.overflow = 'hidden';
 
     // Фокус на поле названия
     setTimeout(() => {
-      dom.editTitle.focus();
+      if (dom.editTitle) dom.editTitle.focus();
     }, 50);
   }
 
   function closeEditModal() {
-    dom.editModal.hidden = true;
+    if (dom.editModal) {
+      dom.editModal.hidden = true;
+      dom.editModal.classList.remove('is-open');
+      dom.editModal.style.display = 'none';
+    }
     document.body.style.overflow = '';
     state.editingId = null;
   }
@@ -832,6 +840,9 @@
   // 13. ИНИЦИАЛИЗАЦИЯ ПРИ ЗАПУСКЕ (App Init)
   // =========================================================================
   function init() {
+    // Гарантированно скрываем модальное окно при старте
+    closeEditModal();
+
     // Установка даты по умолчанию (например, через 3 дня) в input date
     if (dom.taskDeadline && !dom.taskDeadline.value) {
       dom.taskDeadline.value = getOffsetDateString(3);

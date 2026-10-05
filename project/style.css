@@ -109,6 +109,10 @@ button {
   background: none;
 }
 
+[hidden] {
+  display: none !important;
+}
+
 /* --------------------------------------------------------------------------
    3. Каркас и контейнер приложения
    -------------------------------------------------------------------------- */
@@ -887,6 +891,10 @@ button {
 /* --------------------------------------------------------------------------
    11. Пустое состояние (Empty State)
    -------------------------------------------------------------------------- */
+.empty-state[hidden] {
+  display: none !important;
+}
+
 .empty-state {
   text-align: center;
   padding: 48px 24px;
@@ -923,17 +931,25 @@ button {
 /* --------------------------------------------------------------------------
    12. Модальное окно (Modal Dialog)
    -------------------------------------------------------------------------- */
+.modal-backdrop[hidden] {
+  display: none !important;
+}
+
 .modal-backdrop {
   position: fixed;
   inset: 0;
   background: rgba(15, 23, 42, 0.55);
   backdrop-filter: blur(4px);
-  display: flex;
+  display: none; /* Скрыто по умолчанию */
   align-items: center;
   justify-content: center;
   padding: 20px;
   z-index: 1000;
   animation: modalFadeIn 0.2s ease-out;
+}
+
+.modal-backdrop.is-open {
+  display: flex !important;
 }
 
 @keyframes modalFadeIn {
