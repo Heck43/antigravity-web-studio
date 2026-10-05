@@ -566,7 +566,15 @@
     saveTasksToStorage();
     render();
 
-    showToast(`Задача «${deleted.title.substring(0, 25)}...» удалена`, 'warning');
+    showToast(`Задача «${deleted.title.substring(0, 25)}...» удалена`, 'warning', 5000, {
+      text: 'Отменить',
+      onClick: () => {
+        state.tasks.splice(index, 0, deleted);
+        saveTasksToStorage();
+        render();
+        showToast('Удаление отменено, задача восстановлена', 'success');
+      }
+    });
   }
 
   function updateTask(id, updatedData) {
@@ -632,7 +640,7 @@
   // =========================================================================
   // 11. СИСТЕМА УВЕДОМЛЕНИЙ (Toast Notifications)
   // =========================================================================
-  function showToast(message, type = 'info', duration = 3000) {
+  function showToast(message, type = 'info', duration = 3000, action = null) {
     if (!dom.toastContainer) return;
 
     const toast = document.createElement('div');
@@ -652,6 +660,21 @@
       ${iconSvg}
       <span class="toast-message">${escapeHTML(message)}</span>
     `;
+
+    if (action && action.text && typeof action.onClick === 'function') {
+      const actionBtn = document.createElement('button');
+      actionBtn.type = 'button';
+      actionBtn.className = 'toast-action-btn';
+      actionBtn.textContent = action.text;
+      actionBtn.addEventListener('click', (e) => {
+        e.stopPropagation();
+        action.onClick();
+        if (toast.parentNode) {
+          toast.parentNode.removeChild(toast);
+        }
+      });
+      toast.appendChild(actionBtn);
+    }
 
     dom.toastContainer.appendChild(toast);
 
@@ -717,9 +740,7 @@
         } else if (action === 'edit') {
           openEditModal(id);
         } else if (action === 'delete') {
-          if (confirm('Вы уверены, что хотите удалить эту учебную задачу?')) {
-            deleteTask(id);
-          }
+          deleteTask(id);
         }
       });
     }
@@ -820,18 +841,24 @@
     // 8. Кнопка сброса к учебным примерам
     if (dom.btnQuickSample) {
       dom.btnQuickSample.addEventListener('click', () => {
-        if (confirm('Сбросить текущий список и загрузить демонстрационные учебные задачи?')) {
-          state.tasks = JSON.parse(JSON.stringify(INITIAL_SAMPLE_TASKS));
-          // Обновим дедлайны примеров относительно сегодняшнего дня
-          state.tasks[0].deadline = getOffsetDateString(1);
-          state.tasks[1].deadline = getOffsetDateString(4);
-          state.tasks[2].deadline = getOffsetDateString(7);
-          state.tasks[3].deadline = getOffsetDateString(10);
+        const previousTasks = [...state.tasks];
+        state.tasks = JSON.parse(JSON.stringify(INITIAL_SAMPLE_TASKS));
+        state.tasks[0].deadline = getOffsetDateString(1);
+        state.tasks[1].deadline = getOffsetDateString(4);
+        state.tasks[2].deadline = getOffsetDateString(7);
+        state.tasks[3].deadline = getOffsetDateString(10);
 
-          saveTasksToStorage();
-          render();
-          showToast('Демонстрационные задачи успешно загружены', 'info');
-        }
+        saveTasksToStorage();
+        render();
+        showToast('Демонстрационные задачи загружены', 'info', 5000, {
+          text: 'Отменить',
+          onClick: () => {
+            state.tasks = previousTasks;
+            saveTasksToStorage();
+            render();
+            showToast('Предыдущие задачи восстановлены', 'success');
+          }
+        });
       });
     }
   }
